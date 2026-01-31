@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwbanguxglsaj"]
+
+[ext_resource type="PackedScene" uid="uid://cu7j5wps4nphs" path="res://soapbox.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://cplk2f267q7bl" path="res://Funny hat.tscn" id="2_fj7yv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f3sb7"]
+size = Vector3(60, 2, 60)
+
+[node name="Main" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008219719, -1, 0)
+shape = SubResource("BoxShape3D_gv5m4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("BoxMesh_f3sb7")
+
+[node name="Soapbox" parent="." instance=ExtResource("1_f3sb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CameraPivot" type="Marker3D" parent="Soapbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Camera" type="Camera3D" parent="Soapbox/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.25881892, 0.9659259, 0, -0.9659259, 0.25881892, -1, 21, 4)
+
+[node name="big sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 24, 0)
+
+[node name="Funny hat" parent="." instance=ExtResource("2_fj7yv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
