@@ -82,6 +82,3 @@ SoapBox-Metal/
 - **Fall Acceleration:** 75 units/second²
 - **Push Force:** 50 units
 
-## License
-
-This project is provided as-is for learning and demonstration purposes.
