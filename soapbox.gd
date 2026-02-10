@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var speed: float = 14.0
 @export var fall_acceleration: float = 75.0
 @export var push_force: float = 3.0
+@export var bounce_impulse = 16
 
 var target_velocity := Vector3.ZERO
 
@@ -41,6 +42,12 @@ func _physics_process(delta: float) -> void:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
+		if collision.get_collider().is_in_group("obstacles"):
+			# we check that we are hitting it from above.
+			if Vector3.DOWN.dot(collision.get_normal()) < 0.1:
+				target_velocity.y = bounce_impulse
+				# Prevent further duplicate calls.
+				break
 		if collider is RigidBody3D:
 			var push_dir := -collision.get_normal()
 			collider.apply_central_impulse(push_dir * push_force)
