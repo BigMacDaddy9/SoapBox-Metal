@@ -57,14 +57,13 @@ shape = SubResource("BoxShape3D_ground")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("BoxMesh_ground")
 
-[node name="CameraPivot" type="Marker3D" parent="." unique_id=1260218689]
+[node name="Soapbox" parent="." unique_id=1288423517 instance=ExtResource("1_soapbox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.823525, 0)
 
-[node name="Camera" type="Camera3D" parent="CameraPivot" unique_id=310211008]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 12, 10)
+[node name="CameraPivot" type="Marker3D" parent="Soapbox" unique_id=1260218689]
 
-[node name="Soapbox" parent="." unique_id=1288423517 instance=ExtResource("1_soapbox")]
-transform = Transform3D(0.66062504, -0.59973294, 0.4515473, 0.6721601, 0.74040586, 0, -0.33432826, 0.30351207, 0.8922472, 0, 1.823525, 0)
+[node name="Camera" type="Camera3D" parent="Soapbox/CameraPivot" unique_id=310211008]
+transform = Transform3D(-1, 7.5710346e-08, -4.3711385e-08, 3.2161193e-08, 0.78353083, 0.621353, 8.1292065e-08, 0.621353, -0.78353083, 0, 5.8396506, -6.8115177)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=96666862]
 transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 20, 0)

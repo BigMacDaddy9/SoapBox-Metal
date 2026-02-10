@@ -1,36 +1,32 @@
-extends RigidBody3D
+extends VehicleBody3D
 
 
 #
-@export var speed: float = 14.0
-@export var fall_acceleration: float = 75.0
-@export var push_force: float = 3.0
-@export var bounce_impulse = 16
+#@export var speed: float = 14.0
+#@export var fall_acceleration: float = 75.0
+@export var push_force: float = 100.0
+#@export var bounce_impulse = 16
 #
-var target_velocity := Vector3.ZERO
+#var target_velocity := Vector3.ZERO
 #
 #
 func _physics_process(delta: float) -> void:
 	# Get input direction
-	var input_dir := Vector3.ZERO
+	var input_dir = Input.get_vector(
+		"move_right", "move_left", 
+		"move_back", "move_forward"
+	)
 	
-	if Input.is_action_pressed("move_right"):
-		input_dir.x += 1.0
-	if Input.is_action_pressed("move_left"):
-		input_dir.x -= 1.0
-	if Input.is_action_pressed("move_back"):
-		input_dir.z += 1.0
-	if Input.is_action_pressed("move_forward"):
-		input_dir.z -= 1.0
 	
-	if input_dir != Vector3.ZERO:
-		input_dir = input_dir.normalized()
 	
 	## Set horizontal velocity
 	#target_velocity.x = input_dir.x * speed
-	target_velocity.z = input_dir.z * speed
+	#target_velocity.z = input_dir.z * speed
+	engine_force = input_dir.y * push_force
+	steering = input_dir.x * PI/4.0#lerpf(steering, , delta)
 	
-	$BackAxel.apply_torque($BackAxel.global_basis.x*target_velocity.z*100.0)
+	#$BackAxel.apply_torque($BackAxel.global_basis.x*target_velocity.z*100.0)
+	
 	
 	## Apply gravity
 	#if not is_on_floor():
