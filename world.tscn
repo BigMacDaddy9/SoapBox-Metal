@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwbanguxglsaj"]
+[gd_scene format=3 uid="uid://cwbanguxglsaj"]
 
 [ext_resource type="PackedScene" uid="uid://cu7j5wps4nphs" path="res://soapbox.tscn" id="1_soapbox"]
 
@@ -45,129 +45,129 @@ size = Vector3(10, 2, 1.5)
 [sub_resource type="StandardMaterial3D" id="Mat_barrier"]
 albedo_color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=1557934657]
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="Ground" type="StaticBody3D" parent="." unique_id=2024667952]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1427937767]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_ground")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1616761420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("BoxMesh_ground")
 
-[node name="Soapbox" parent="." instance=ExtResource("1_soapbox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="Soapbox" parent="." unique_id=1288423517 instance=ExtResource("1_soapbox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.823525, 0)
 
-[node name="CameraPivot" type="Marker3D" parent="Soapbox"]
+[node name="CameraPivot" type="Marker3D" parent="Soapbox" unique_id=1260218689]
 
-[node name="Camera" type="Camera3D" parent="Soapbox/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 12, 10)
+[node name="Camera" type="Camera3D" parent="Soapbox/CameraPivot" unique_id=310211008]
+transform = Transform3D(-1, 7.5710346e-08, -4.3711385e-08, 3.2161193e-08, 0.78353083, 0.621353, 8.1292065e-08, 0.621353, -0.78353083, 0, 5.8396506, -6.8115177)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=96666862]
 transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 20, 0)
 shadow_enabled = true
 
-[node name="Obstacles" type="Node3D" parent="." groups=["obstacles"]]
+[node name="Obstacles" type="Node3D" parent="." unique_id=1619123946 groups=["obstacles"]]
 
-[node name="Crate1" type="RigidBody3D" parent="Obstacles"]
+[node name="Crate1" type="RigidBody3D" parent="Obstacles" unique_id=1460288804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, -6)
 mass = 2.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Crate1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Crate1" unique_id=2106690682]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 7)
 shape = SubResource("BoxShape3D_crate")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Crate1"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Crate1" unique_id=1708614142]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 7)
 mesh = SubResource("BoxMesh_crate")
 surface_material_override/0 = SubResource("Mat_red")
 
-[node name="Crate2" type="RigidBody3D" parent="Obstacles"]
+[node name="Crate2" type="RigidBody3D" parent="Obstacles" unique_id=848211722]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 4)
 mass = 2.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Crate2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Crate2" unique_id=1677051069]
 shape = SubResource("BoxShape3D_crate")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Crate2"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Crate2" unique_id=1185271167]
 mesh = SubResource("BoxMesh_crate")
 surface_material_override/0 = SubResource("Mat_green")
 
-[node name="Crate3" type="RigidBody3D" parent="Obstacles"]
+[node name="Crate3" type="RigidBody3D" parent="Obstacles" unique_id=1026635392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 8)
 mass = 2.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Crate3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Crate3" unique_id=521965026]
 shape = SubResource("BoxShape3D_crate")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Crate3"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Crate3" unique_id=1393913784]
 mesh = SubResource("BoxMesh_crate")
 surface_material_override/0 = SubResource("Mat_yellow")
 
-[node name="SmallBox1" type="RigidBody3D" parent="Obstacles"]
+[node name="SmallBox1" type="RigidBody3D" parent="Obstacles" unique_id=1943664454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.75, -8)
 mass = 0.5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/SmallBox1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/SmallBox1" unique_id=947211292]
 shape = SubResource("BoxShape3D_small")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/SmallBox1"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/SmallBox1" unique_id=1991968600]
 mesh = SubResource("BoxMesh_small")
 surface_material_override/0 = SubResource("Mat_purple")
 
-[node name="SmallBox2" type="RigidBody3D" parent="Obstacles"]
+[node name="SmallBox2" type="RigidBody3D" parent="Obstacles" unique_id=809765686]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.75, 6)
 mass = 0.5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/SmallBox2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/SmallBox2" unique_id=1225183904]
 shape = SubResource("BoxShape3D_small")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/SmallBox2"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/SmallBox2" unique_id=1678702945]
 mesh = SubResource("BoxMesh_small")
 surface_material_override/0 = SubResource("Mat_orange")
 
-[node name="SmallBox3" type="RigidBody3D" parent="Obstacles"]
+[node name="SmallBox3" type="RigidBody3D" parent="Obstacles" unique_id=800048422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.75, 5)
 mass = 0.5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/SmallBox3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/SmallBox3" unique_id=711302683]
 shape = SubResource("BoxShape3D_small")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/SmallBox3"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/SmallBox3" unique_id=27245448]
 mesh = SubResource("BoxMesh_small")
 surface_material_override/0 = SubResource("Mat_red")
 
-[node name="SmallBox4" type="RigidBody3D" parent="Obstacles"]
+[node name="SmallBox4" type="RigidBody3D" parent="Obstacles" unique_id=500536920]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.75, -10)
 mass = 0.5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/SmallBox4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/SmallBox4" unique_id=735685270]
 shape = SubResource("BoxShape3D_small")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/SmallBox4"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/SmallBox4" unique_id=858574221]
 mesh = SubResource("BoxMesh_small")
 surface_material_override/0 = SubResource("Mat_green")
 
-[node name="Barrier1" type="StaticBody3D" parent="Obstacles"]
+[node name="Barrier1" type="StaticBody3D" parent="Obstacles" unique_id=290166337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -20)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Barrier1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Barrier1" unique_id=1346830399]
 shape = SubResource("BoxShape3D_barrier")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Barrier1"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Barrier1" unique_id=731364724]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = SubResource("BoxMesh_crate")
 surface_material_override/0 = SubResource("Mat_barrier")
 
-[node name="Barrier2" type="StaticBody3D" parent="Obstacles"]
+[node name="Barrier2" type="StaticBody3D" parent="Obstacles" unique_id=347621404]
 transform = Transform3D(0.707, 0, 0.707, 0, 1, 0, -0.707, 0, 0.707, -16, 1, 8)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Barrier2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Barrier2" unique_id=1489506069]
 shape = SubResource("BoxShape3D_barrier")
 
-[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Barrier2"]
+[node name="Mesh" type="MeshInstance3D" parent="Obstacles/Barrier2" unique_id=1447333890]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = SubResource("BoxMesh_crate")
 surface_material_override/0 = SubResource("Mat_barrier")
