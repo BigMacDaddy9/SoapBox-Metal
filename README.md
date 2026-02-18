@@ -1,35 +1,6 @@
-# 🧼💥 Soapbox Rumble
+# Core Systems
 
-A chaotic physics-based soapbox racing and destruction prototype built
-in **Godot 4**.
-
-Crash into walls. Smash into obstacles. Rip wheels off.\
-Or unleash an AI-controlled battering ram and survive the arena.
-
-------------------------------------------------------------------------
-
-## 🎮 Overview
-
-**Soapbox Rumble** is a physics-driven vehicle combat sandbox featuring:
-
--   🚗 Progressive vehicle damage
--   🛞 Detachable wheels
--   🛡️ Breakable bumpers
--   🤖 Aggressive AI rammer
--   🪨 Physics obstacles
--   🧱 Arena walls
--   📊 Per-wheel damage HUD
--   🚀 Boost system
--   🎥 Rotatable camera
-
-This project focuses on emergent chaos using Godot's `VehicleBody3D`
-physics.
-
-------------------------------------------------------------------------
-
-# 🧠 Core Systems
-
-## 🚗 Progressive Damage System
+## Progressive Damage System
 
 Damage is impulse-based.
 
@@ -45,7 +16,7 @@ Only when damage exceeds a threshold do wheels detach.
 
 ------------------------------------------------------------------------
 
-## 🛞 Wheel Detachment
+## Wheel Detachment
 
 -   Wheels detach independently.
 -   Only wheels on the impacted side receive damage.
@@ -57,7 +28,7 @@ Only when damage exceeds a threshold do wheels detach.
 
 ------------------------------------------------------------------------
 
-## 🛡️ Breakable Bumpers
+## Breakable Bumpers
 
 Front and rear bumpers:
 
@@ -68,7 +39,7 @@ Front and rear bumpers:
 
 ------------------------------------------------------------------------
 
-## 🚀 Boost System
+## Boost System
 
 -   Activated via **Spacebar**
 -   Adds temporary engine force
@@ -77,7 +48,7 @@ Front and rear bumpers:
 
 ------------------------------------------------------------------------
 
-## 🤖 AI Rammer
+## AI Rammer
 
 The enemy soapbox:
 
@@ -93,7 +64,7 @@ This AI is designed to **ram like a truck**, not race cleanly.
 
 ------------------------------------------------------------------------
 
-## 🪨 Obstacle System
+## Obstacle System
 
 Random obstacles spawn across the arena:
 
@@ -106,7 +77,7 @@ Random obstacles spawn across the arena:
 
 ------------------------------------------------------------------------
 
-## 🧱 Arena System
+## Arena System
 
 -   Large ground plane
 -   Tall perimeter walls
@@ -116,7 +87,7 @@ Random obstacles spawn across the arena:
 
 ------------------------------------------------------------------------
 
-## 📊 Damage HUD
+## Damage HUD
 
 On-screen UI displays:
 
@@ -128,11 +99,10 @@ On-screen UI displays:
 Each wheel shows:
 
 -   Damage percentage
--   Live updating progress bars
 
 ------------------------------------------------------------------------
 
-## 🎥 Camera System
+## Camera System
 
 -   Right mouse button rotates camera
 -   Vertical pitch clamped
@@ -141,7 +111,7 @@ Each wheel shows:
 
 ------------------------------------------------------------------------
 
-# 🎮 Controls
+# Controls
 
   Action          Input
   --------------- -------------------------
@@ -154,7 +124,7 @@ Each wheel shows:
 
 ------------------------------------------------------------------------
 
-# ⚙️ Tuning
+# Tuning
 
 Most gameplay variables are exposed via `@export` in `soapbox.gd` and
 `enemy_ai.gd`.
@@ -174,7 +144,7 @@ The project is designed for rapid experimentation.
 
 ------------------------------------------------------------------------
 
-# 🧪 Current Features
+# Current Features
 
 -   [x] Progressive wheel damage
 -   [x] Detachable wheels
@@ -185,6 +155,8 @@ The project is designed for rapid experimentation.
 -   [x] Physics obstacles
 -   [x] Damage UI
 -   [x] AI toggle before runtime
+-   [x] Start Up Screen
+-   [x] In game Menu
 
 ------------------------------------------------------------------------
 
@@ -200,19 +172,8 @@ The project is designed for rapid experimentation.
 
 ------------------------------------------------------------------------
 
-# 📦 Requirements
+# Requirements
 
--   Godot 4.x
--   No external plugins required
+-   Godot 4.5
 
 ------------------------------------------------------------------------
-
-# 🎯 Philosophy
-
-This is not a racing sim.
-
-This is a physics playground about: - Chaos - Momentum - Destruction -
-Emergent vehicle failure
-
-If it looks unstable, unpredictable, and slightly ridiculous --- it's
-working.
