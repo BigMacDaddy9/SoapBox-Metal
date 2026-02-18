@@ -1,22 +1,35 @@
-## Overview
+# 🧼💥 Soapbox Rumble
 
-**Soapbox Metal** features in this update:
+A chaotic physics-based soapbox racing and destruction prototype built
+in **Godot 4**.
 
--   Progressive vehicle damage
--   Detachable wheels
--   Breakable bumpers
--   Aggressive AI rammer
--   Physics obstacles
--   Arena walls
--   Per-wheel damage HUD
--   Boost system
--   Rotatable camera
+Crash into walls. Smash into obstacles. Rip wheels off.\
+Or unleash an AI-controlled battering ram and survive the arena.
 
 ------------------------------------------------------------------------
 
-# Core Systems
+## 🎮 Overview
 
-## Progressive Damage System
+**Soapbox Rumble** is a physics-driven vehicle combat sandbox featuring:
+
+-   🚗 Progressive vehicle damage
+-   🛞 Detachable wheels
+-   🛡️ Breakable bumpers
+-   🤖 Aggressive AI rammer
+-   🪨 Physics obstacles
+-   🧱 Arena walls
+-   📊 Per-wheel damage HUD
+-   🚀 Boost system
+-   🎥 Rotatable camera
+
+This project focuses on emergent chaos using Godot's `VehicleBody3D`
+physics.
+
+------------------------------------------------------------------------
+
+# 🧠 Core Systems
+
+## 🚗 Progressive Damage System
 
 Damage is impulse-based.
 
@@ -32,7 +45,7 @@ Only when damage exceeds a threshold do wheels detach.
 
 ------------------------------------------------------------------------
 
-## Wheel Detachment
+## 🛞 Wheel Detachment
 
 -   Wheels detach independently.
 -   Only wheels on the impacted side receive damage.
@@ -44,7 +57,7 @@ Only when damage exceeds a threshold do wheels detach.
 
 ------------------------------------------------------------------------
 
-## Breakable Bumpers
+## 🛡️ Breakable Bumpers
 
 Front and rear bumpers:
 
@@ -55,7 +68,7 @@ Front and rear bumpers:
 
 ------------------------------------------------------------------------
 
-## Boost System
+## 🚀 Boost System
 
 -   Activated via **Spacebar**
 -   Adds temporary engine force
@@ -64,7 +77,7 @@ Front and rear bumpers:
 
 ------------------------------------------------------------------------
 
-## AI Rammer
+## 🤖 AI Rammer
 
 The enemy soapbox:
 
@@ -76,9 +89,11 @@ The enemy soapbox:
 -   Simple unstuck behavior
 -   Optional --- can be toggled on/off before runtime
 
+This AI is designed to **ram like a truck**, not race cleanly.
+
 ------------------------------------------------------------------------
 
-## Obstacle System
+## 🪨 Obstacle System
 
 Random obstacles spawn across the arena:
 
@@ -91,9 +106,9 @@ Random obstacles spawn across the arena:
 
 ------------------------------------------------------------------------
 
-## Arena System
+## 🧱 Arena System
 
--   Increased ground plane
+-   Large ground plane
 -   Tall perimeter walls
 -   Walls apply full collision impulses
 -   Prevent falling off map
@@ -101,7 +116,7 @@ Random obstacles spawn across the arena:
 
 ------------------------------------------------------------------------
 
-## Damage HUD
+## 📊 Damage HUD
 
 On-screen UI displays:
 
@@ -113,10 +128,11 @@ On-screen UI displays:
 Each wheel shows:
 
 -   Damage percentage
+-   Live updating progress bars
 
 ------------------------------------------------------------------------
 
-## Camera System
+## 🎥 Camera System
 
 -   Right mouse button rotates camera
 -   Vertical pitch clamped
@@ -125,20 +141,20 @@ Each wheel shows:
 
 ------------------------------------------------------------------------
 
-# Controls
+# 🎮 Controls
 
-| Action              | Key / Input                |
-|---------------------|---------------------------|
-| Accelerate          | `W`                       |
-| Reverse             | `S`                       |
-| Steer Left          | `A`                       |
-| Steer Right         | `D`                       |
-| Boost               | `Space`                   |
-| Rotate Camera       | `Hold Right Mouse Button` |
+  Action          Input
+  --------------- -------------------------
+  Accelerate      W
+  Reverse         S
+  Steer Left      A
+  Steer Right     D
+  Boost           Space
+  Rotate Camera   Hold Right Mouse Button
 
 ------------------------------------------------------------------------
 
-# Tuning
+# ⚙️ Tuning
 
 Most gameplay variables are exposed via `@export` in `soapbox.gd` and
 `enemy_ai.gd`.
@@ -154,13 +170,29 @@ You can tune:
 -   AI boost behavior
 -   Steering smoothness
 
+The project is designed for rapid experimentation.
+
 ------------------------------------------------------------------------
 
-# Project Structure
+# 🧪 Current Features
+
+-   [x] Progressive wheel damage
+-   [x] Detachable wheels
+-   [x] Detachable bumpers
+-   [x] AI rammer
+-   [x] Boost system
+-   [x] Arena walls
+-   [x] Physics obstacles
+-   [x] Damage UI
+-   [x] AI toggle before runtime
+
+------------------------------------------------------------------------
+
+# 🛠 Project Structure
 
     soapbox.tscn         -> Vehicle scene
     soapbox.gd           -> Core vehicle logic + damage system
-    enemy_ai.gd          -> AI driver
+    enemy_ai.gd          -> Aggressive AI driver
     world.tscn           -> Main arena scene
     world.gd             -> AI toggle logic
     obstacle_spawner.gd  -> Random obstacle generation
@@ -168,8 +200,19 @@ You can tune:
 
 ------------------------------------------------------------------------
 
-# Requirements
+# 📦 Requirements
 
--   Godot 4.5
+-   Godot 4.x
+-   No external plugins required
 
 ------------------------------------------------------------------------
+
+# 🎯 Philosophy
+
+This is not a racing sim.
+
+This is a physics playground about: - Chaos - Momentum - Destruction -
+Emergent vehicle failure
+
+If it looks unstable, unpredictable, and slightly ridiculous --- it's
+working.

@@ -1,0 +1,69 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/in_game_menu.gd" id="1"]
+
+[node name="InGameMenu" type="CanvasLayer"]
+script = ExtResource("1")
+layer = 100
+process_mode = 3
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Dimmer" type="ColorRect" parent="Root"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.45)
+mouse_filter = 2
+
+[node name="TopRight" type="Control" parent="Root"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 220.0
+
+[node name="DropPanel" type="PanelContainer" parent="Root/TopRight"]
+visible = false
+layout_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Margin" type="MarginContainer" parent="Root/TopRight/DropPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="Root/TopRight/DropPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Root/TopRight/DropPanel/Margin/VBox"]
+layout_mode = 2
+text = "MENU"
+horizontal_alignment = 2
+
+[node name="ResetButton" type="Button" parent="Root/TopRight/DropPanel/Margin/VBox"]
+layout_mode = 2
+text = "Reset"
+
+[node name="QuitToMenuButton" type="Button" parent="Root/TopRight/DropPanel/Margin/VBox"]
+layout_mode = 2
+text = "Quit to Main Menu"
+
+[node name="QuitGameButton" type="Button" parent="Root/TopRight/DropPanel/Margin/VBox"]
+layout_mode = 2
+text = "Quit Game"

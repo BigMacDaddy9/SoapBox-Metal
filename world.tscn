@@ -28,7 +28,6 @@ size = Vector3(120, 8, 2)
 
 [node name="Main" type="Node3D" unique_id=1557934657]
 script = ExtResource("102_world")
-enable_ai_car = false
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=2024667952]
 
