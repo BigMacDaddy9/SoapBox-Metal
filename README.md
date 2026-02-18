@@ -161,7 +161,7 @@ The project is designed for rapid experimentation.
 
 ------------------------------------------------------------------------
 
-# 🛠 Project Structure
+# Project Structure
 
     soapbox.tscn         -> Vehicle scene
     soapbox.gd           -> Core vehicle logic + damage system
