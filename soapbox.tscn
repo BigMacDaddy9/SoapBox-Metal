@@ -22,6 +22,18 @@ size = Vector3(3, 0.1, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wc6t"]
 size = Vector3(3, 1, 5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_front_bumper"]
+size = Vector3(2.6, 0.5, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_front_bumper"]
+size = Vector3(2.6, 0.5, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_back_bumper"]
+size = Vector3(2.6, 0.5, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_back_bumper"]
+size = Vector3(2.6, 0.5, 0.8)
+
 [node name="Soapbox" type="VehicleBody3D" unique_id=1763406181]
 continuous_cd = true
 engine_force = 55.3
@@ -77,6 +89,24 @@ wheel_radius = 0.7
 wheel_rest_length = 0.485
 suspension_travel = 0.69
 suspension_stiffness = 15.155
+
+[node name="FrontBumper" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, -2.8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FrontBumper"]
+shape = SubResource("BoxShape3D_front_bumper")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FrontBumper"]
+mesh = SubResource("BoxMesh_front_bumper")
+
+[node name="BackBumper" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 2.8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackBumper"]
+shape = SubResource("BoxShape3D_back_bumper")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BackBumper"]
+mesh = SubResource("BoxMesh_back_bumper")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LeftBackWheel" unique_id=972768848]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
