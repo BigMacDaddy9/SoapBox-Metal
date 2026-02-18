@@ -113,14 +113,15 @@ Each wheel shows:
 
 # Controls
 
-  Action          Input
-  --------------- -------------------------
-  Accelerate      W
-  Reverse         S
-  Steer Left      A
-  Steer Right     D
-  Boost           Space
-  Rotate Camera   Hold Right Mouse Button
+| Action              | Key / Input                |
+|---------------------|---------------------------|
+| Accelerate          | `W`                       |
+| Reverse             | `S`                       |
+| Steer Left          | `A`                       |
+| Steer Right         | `D`                       |
+| Boost               | `Space`                   |
+| Rotate Camera       | `Hold Right Mouse Button` |
+| Menu                | `Esc` |
 
 ------------------------------------------------------------------------
 
