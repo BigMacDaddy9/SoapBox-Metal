@@ -100,6 +100,10 @@ Each wheel shows:
 
 -   Damage percentage
 
+Updated in this version:
+
+-  Moved the HUD to it's own scene so it's usable across scenes
+
 ------------------------------------------------------------------------
 
 ## Camera System
@@ -108,6 +112,10 @@ Each wheel shows:
 -   Vertical pitch clamped
 -   Smooth return when released
 -   Adjustable sensitivity and return speed
+
+Updated in this version:
+
+-  Moved the camera out of the World scene so it's usable in other scenes
 
 ------------------------------------------------------------------------
 
@@ -158,6 +166,7 @@ The project is designed for rapid experimentation.
 -   [x] AI toggle before runtime
 -   [x] Start Up Screen
 -   [x] In game Menu
+-   [x] Downhill Demo with Win message
 
 ------------------------------------------------------------------------
 
