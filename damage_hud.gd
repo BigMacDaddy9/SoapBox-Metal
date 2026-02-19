@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-@export var player_path: NodePath = NodePath("../Soapbox")
-
 @onready var rf_bar: TextureProgressBar = $WheelPanel/RF/Bar
 @onready var lf_bar: TextureProgressBar = $WheelPanel/LF/Bar
 @onready var rb_bar: TextureProgressBar = $WheelPanel/RB/Bar
@@ -14,12 +12,11 @@ extends CanvasLayer
 
 var _player: Node = null
 
-func _ready() -> void:
-	_player = get_node_or_null(player_path)
-
 func _process(_delta: float) -> void:
-	if _player == null:
-		return
+	if _player == null or not is_instance_valid(_player):
+		_player = get_tree().get_first_node_in_group("player")
+		if _player == null:
+			return
 
 	_update_wheel("RightFrontWheel", rf_bar, rf_label, "RF")
 	_update_wheel("LeftFrontWheel",  lf_bar, lf_label, "LF")
@@ -37,8 +34,4 @@ func _update_wheel(wheel_name: String, bar: TextureProgressBar, label: Label, sh
 
 	var pct: int = int(round(ratio * 100.0))
 	bar.value = pct
-
-	if detached:
-		label.text = "%s: OFF" % short_name
-	else:
-		label.text = "%s: %d%%" % [short_name, pct]
+	label.text = ("%s: OFF" % short_name) if detached else ("%s: %d%%" % [short_name, pct])

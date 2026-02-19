@@ -39,7 +39,6 @@ extends VehicleBody3D
 @export var bumper_pop_up_kick: float = 2.0
 @export var bumper_pop_spin: float = 12.0
 
-
 # --- Boost ---
 @export var boost_force: float = 100.0
 @export var boost_multiplier: float = 1.5

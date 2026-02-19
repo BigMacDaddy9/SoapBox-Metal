@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 const MAIN_MENU_SCENE_PATH := "res://main_menu.tscn"
+const TRACK_SELECT_SCENE_PATH := "res://track_select.tscn"
 
 @onready var drop_panel: PanelContainer = $Root/TopRight/DropPanel
 @onready var reset_button: Button = $Root/TopRight/DropPanel/Margin/VBox/ResetButton
@@ -56,7 +57,9 @@ func _on_scene_changed() -> void:
 	_refresh_scene_state()
 
 func _refresh_scene_state() -> void:
-	var in_gameplay := (_get_current_scene_path() != MAIN_MENU_SCENE_PATH)
+	var path := _get_current_scene_path()
+	var in_gameplay := (path != MAIN_MENU_SCENE_PATH and path != TRACK_SELECT_SCENE_PATH)
+
 
 	visible = in_gameplay
 
@@ -70,7 +73,7 @@ func _is_gameplay_now() -> bool:
 	var path := _get_current_scene_path()
 	if path == "":
 		return true
-	return path != MAIN_MENU_SCENE_PATH
+	return (path != MAIN_MENU_SCENE_PATH and path != TRACK_SELECT_SCENE_PATH)
 
 func _get_current_scene_path() -> String:
 	var scene := get_tree().current_scene
@@ -84,7 +87,9 @@ func _close_menu() -> void:
 	drop_panel.visible = false
 	dimmer.visible = false
 	get_tree().paused = false
-	_apply_mouse_for_gameplay()
+
+	# Apply correct mouse mode for whatever scene we are now in
+	_refresh_scene_state()
 
 func _apply_mouse_for_gameplay() -> void:
 	# If you don't want capture at all, change this to VISIBLE.

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c6tgxu7vqhjh0" path="res://obstacle_spawner.gd" id="99_obstacle_spawner"]
 [ext_resource type="Script" uid="uid://dqrtdlvgrbuo4" path="res://damage_hud.gd" id="100_damage_hud"]
 [ext_resource type="Script" uid="uid://dc4mf7hpv7qqv" path="res://world.gd" id="102_world"]
+[ext_resource type="PackedScene" path="res://damage_hud.tscn" id="101_damage_hud_scene"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(120, 2, 120)
@@ -41,11 +42,6 @@ mesh = SubResource("BoxMesh_ground")
 
 [node name="Soapbox" parent="." unique_id=1288423517 groups=["player"] instance=ExtResource("1_soapbox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.823525, 0)
-
-[node name="CameraPivot" type="Marker3D" parent="Soapbox" unique_id=1260218689]
-
-[node name="Camera" type="Camera3D" parent="Soapbox/CameraPivot" unique_id=310211008]
-transform = Transform3D(-1, 7.5710346e-08, -4.3711385e-08, 3.2161193e-08, 0.78353083, 0.621353, 8.1292065e-08, 0.621353, -0.78353083, 0, 5.8396506, -6.8115177)
 
 [node name="EnemySoapbox" parent="." unique_id=651960805 instance=ExtResource("1_soapbox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.823525, 0)
@@ -113,8 +109,7 @@ mesh = SubResource("BoxMesh_wall")
 [node name="Obstacles" type="Node3D" parent="." unique_id=81669857]
 script = ExtResource("99_obstacle_spawner")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=965255048]
-script = ExtResource("100_damage_hud")
+[node name="HUD" parent="." instance=ExtResource("101_damage_hud_scene")]
 
 [node name="WheelPanel" type="Control" parent="HUD" unique_id=713835703]
 layout_mode = 3
