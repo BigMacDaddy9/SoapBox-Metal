@@ -26,6 +26,16 @@ albedo_color = Color(0.35, 0.35, 0.4, 1)
 material = SubResource("Mat_barrier")
 size = Vector3(120, 8, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
+size = Vector3(2.5, 5, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwbse"]
+albedo_color = Color(1, 0.11372549, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pkg7o"]
+material = SubResource("StandardMaterial3D_dwbse")
+size = Vector3(2.5, 5, 4)
+
 [node name="Main" type="Node3D" unique_id=1557934657]
 script = ExtResource("102_world")
 
@@ -194,3 +204,21 @@ layout_mode = 0
 offset_left = 80.0
 offset_right = 340.0
 offset_bottom = 24.0
+
+[node name="FunnyHat" type="RigidBody3D" parent="." unique_id=1939566511]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FunnyHat" unique_id=126344374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_036b0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FunnyHat" unique_id=176544499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+mesh = SubResource("BoxMesh_pkg7o")
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="FunnyHat" unique_id=1537899326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+node_a = NodePath("..")
+node_b = NodePath("../../Soapbox")
+angular_limit/enable = true
+angular_limit/upper = 0.3403392
+angular_limit/lower = -0.38048178
