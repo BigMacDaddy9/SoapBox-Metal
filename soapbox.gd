@@ -47,12 +47,6 @@ extends VehicleBody3D
 @export var boost_cooldown: float = 1.5
 @export var allow_player_input: bool = true
 
-# --- Camera Rotation ---
-@export var camera_sensitivity: float = 0.005
-@export var camera_return_speed: float = 7.0
-@export var camera_pitch_min: float = deg_to_rad(-20.0)
-@export var camera_pitch_max: float = deg_to_rad(45.0)
-
 signal damage_changed(damage_ratio: float)
 
 var _last_damage_ratio: float = -1.0
@@ -76,12 +70,6 @@ var _base_travel := {} as Dictionary   # NodePath -> float
 
 var _cooldown_left := 0.0
 
-var _camera_pivot: Node3D = null
-var _cam_yaw: float = 0.0
-var _cam_pitch: float = 0.0
-var _cam_default_yaw: float = 0.0
-var _cam_default_pitch: float = 0.0
-
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = contacts_to_report
@@ -103,19 +91,6 @@ func _ready() -> void:
 	_front_bumper = get_node_or_null("FrontBumper") as Node3D
 	_back_bumper = get_node_or_null("BackBumper") as Node3D
 
-
-	_camera_pivot = find_child("CameraPivot", true, false) as Node3D
-
-	# Only set up camera vars if this instance actually has a camera pivot
-	if _camera_pivot != null:
-		_cam_default_yaw = _camera_pivot.rotation.y
-		_cam_default_pitch = _camera_pivot.rotation.x
-
-		_cam_yaw = _cam_default_yaw
-		_cam_pitch = _cam_default_pitch
-
-
-
 func _physics_process(delta: float) -> void:
 	_cooldown_left = maxf(0.0, _cooldown_left - delta)
 
@@ -128,7 +103,13 @@ func _physics_process(delta: float) -> void:
 	if allow_player_input and Input.is_action_just_pressed("boost") and _boost_cooldown_timer <= 0.0:
 		_boost_timer = boost_duration
 		_boost_cooldown_timer = boost_cooldown
-
+		
+			#Rotating the vehicle along with the top box
+	if allow_player_input and Input.is_action_pressed("move_right"):
+		rotation_degrees.z = clampf(rotation_degrees.z + 30 * 0.3 * delta, -90, 90);
+	
+	if allow_player_input and Input.is_action_pressed("move_left"):
+		rotation_degrees.z = clampf(rotation_degrees.z - 30 * 0.3 * delta, -90, 90);
 
 	var engine_mult := _engine_multiplier_from_damage()
 	var steer_mult := _steer_multiplier_from_front_damage()
@@ -141,13 +122,6 @@ func _physics_process(delta: float) -> void:
 
 	engine_force = final_engine_force
 	steering = input_dir.x * base_steer_angle * steer_mult
-
-	# Camera: only if this instance has a pivot (player car will, AI might not)
-	if _camera_pivot != null and not Input.is_action_pressed("camera_rotate"):
-		var t: float = 1.0 - exp(-camera_return_speed * delta)
-		_cam_yaw = lerp(_cam_yaw, _cam_default_yaw, t)
-		_cam_pitch = lerp(_cam_pitch, _cam_default_pitch, t)
-		_camera_pivot.rotation = Vector3(_cam_pitch, _cam_yaw, 0.0)
 
 	# --- Damage HUD update ---
 	var r: float = get_damage_ratio()
@@ -493,17 +467,6 @@ func _steer_multiplier_from_front_damage() -> float:
 func _get_drive_input() -> Vector2:
 	# Your original mapping/direction
 	return Input.get_vector("move_right", "move_left", "move_back", "move_forward")
-
-func _unhandled_input(event: InputEvent) -> void:
-	if _camera_pivot == null:
-		return
-
-	if event is InputEventMouseMotion and Input.is_action_pressed("camera_rotate"):
-		_cam_yaw -= event.relative.x * camera_sensitivity
-		_cam_pitch += event.relative.y * camera_sensitivity
-		_cam_pitch = clampf(_cam_pitch, camera_pitch_min, camera_pitch_max)
-
-		_camera_pivot.rotation = Vector3(_cam_pitch, _cam_yaw, 0.0)
 
 func get_damage_ratio() -> float:
 	# 0.0 = pristine, 1.0 = wrecked
