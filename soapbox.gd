@@ -70,6 +70,11 @@ var _base_travel := {} as Dictionary   # NodePath -> float
 
 var _cooldown_left := 0.0
 
+@onready var hingeRF = $FunnyHat/JointRF
+@onready var hingeLF = $FunnyHat/JointLF
+@onready var hingeLB = $FunnyHat/JointLB
+@onready var hingeRB = $FunnyHat/JointRB
+
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = contacts_to_report
@@ -107,9 +112,27 @@ func _physics_process(delta: float) -> void:
 			#Rotating the vehicle along with the top box
 	if allow_player_input and Input.is_action_pressed("move_right"):
 		rotation_degrees.z = clampf(rotation_degrees.z + 30 * 0.3 * delta, -90, 90);
+		if rotation_degrees.z >= 75:
+			if hingeLF:
+				hingeLF.queue_free()
+			if hingeLB:
+				hingeLB.queue_free()
+			if hingeRF:
+				hingeRF.queue_free()
+			if hingeRB:
+				hingeRB.queue_free()
 	
 	if allow_player_input and Input.is_action_pressed("move_left"):
 		rotation_degrees.z = clampf(rotation_degrees.z - 30 * 0.3 * delta, -90, 90);
+		if rotation_degrees.z <= -75:
+			if hingeRF:
+				hingeRF.queue_free()
+			if hingeRB:
+				hingeRB.queue_free()
+			if hingeLF:
+				hingeLF.queue_free()
+			if hingeLB:
+				hingeLB.queue_free()
 
 	var engine_mult := _engine_multiplier_from_damage()
 	var steer_mult := _steer_multiplier_from_front_damage()
@@ -285,6 +308,14 @@ func _apply_bumper_damage(which: String, impulse_mag: float, hit_pos_global: Vec
 
 	if now >= bumper_detach_at_damage:
 		_detach_bumper(which, hit_pos_global, hit_normal_global, impulse_mag)
+		if hingeRF:
+			hingeRF.queue_free()
+		if hingeRB:
+			hingeRB.queue_free()
+		if hingeLF:
+			hingeLF.queue_free()
+		if hingeLB:
+			hingeLB.queue_free()
 
 func _detach_bumper(which: String, hit_pos_global: Vector3, hit_normal_global: Vector3, impulse_mag: float) -> void:
 	_bumper_detached[which] = true
