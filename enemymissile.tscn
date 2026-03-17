@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://d0yd57f0dqahr"]
+
+[ext_resource type="Script" uid="uid://di6jogp16cf2w" path="res://scripts/missile.gd" id="1_0iim8"]
+[ext_resource type="PackedScene" uid="uid://cmx3x63n1j1bj" path="res://explosion.tscn" id="2_ajcun"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8j23c"]
+top_radius = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdnlh"]
+albedo_color = Color(0.9882353, 0.047058824, 0.105882354, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8j23c"]
+height = 2.5
+radius = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cdnlh"]
+
+[node name="Missile" type="RigidBody3D" unique_id=1264508382]
+mass = 104.665
+gravity_scale = 1.634
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_0iim8")
+coolexplosion = ExtResource("2_ajcun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1027370821]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_8j23c")
+surface_material_override/0 = SubResource("StandardMaterial3D_cdnlh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1923776551]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_8j23c")
+
+[node name="MissileArea" type="Area3D" parent="." unique_id=1222320545]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MissileArea" unique_id=1408558412]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_cdnlh")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_missile_body_shape_entered"]

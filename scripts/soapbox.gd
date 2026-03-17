@@ -45,6 +45,7 @@ extends VehicleBody3D
 @export var boost_multiplier: float = 1.5
 @export var boost_duration: float = 0.4
 @export var boost_cooldown: float = 1.5
+@export var missile_cooldown: float = 4.0
 @export var allow_player_input: bool = true
 
 signal damage_changed(damage_ratio: float)
@@ -53,6 +54,7 @@ var _last_damage_ratio: float = -1.0
 
 var _boost_timer: float = 0.0
 var _boost_cooldown_timer: float = 0.0
+var _missile_cooldown_timer : float = 0.0
 
 var _wheels := [] as Array[VehicleWheel3D]
 var _detached := {} as Dictionary      # NodePath -> bool
@@ -74,6 +76,8 @@ var _cooldown_left := 0.0
 @onready var hingeLF = $FunnyHat/JointLF
 @onready var hingeLB = $FunnyHat/JointLB
 @onready var hingeRB = $FunnyHat/JointRB
+
+@export var missile : PackedScene
 
 func _ready() -> void:
 	contact_monitor = true
@@ -101,6 +105,7 @@ func _physics_process(delta: float) -> void:
 
 	_boost_timer = maxf(0.0, _boost_timer - delta)
 	_boost_cooldown_timer = maxf(0.0, _boost_cooldown_timer - delta)
+	_missile_cooldown_timer = maxf(0.0, _missile_cooldown_timer - delta)
 
 	var input_dir: Vector2 = _get_drive_input()
 
@@ -109,6 +114,14 @@ func _physics_process(delta: float) -> void:
 		_boost_timer = boost_duration
 		_boost_cooldown_timer = boost_cooldown
 		
+		# Missiles
+	if allow_player_input and Input.is_action_just_pressed("missile") and _missile_cooldown_timer <= 0.0:
+		_missile_cooldown_timer = missile_cooldown
+		var tmp_missile = missile.instantiate()
+		tmp_missile.position = $Marker3D.global_position
+		tmp_missile.rotation = $Marker3D.global_rotation
+		add_sibling(tmp_missile)
+	
 			#Rotating the vehicle along with the top box
 	if allow_player_input and Input.is_action_pressed("move_right"):
 		rotation_degrees.z = clampf(rotation_degrees.z + 30 * 0.3 * delta, -90, 90);

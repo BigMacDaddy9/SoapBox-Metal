@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cu7j5wps4nphs"]
 
-[ext_resource type="Script" uid="uid://by8owkapuiphr" path="res://soapbox.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://by8owkapuiphr" path="res://scripts/soapbox.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://t7lutjqx5hrk" path="res://missile.tscn" id="2_233yk"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_233yk"]
 top_radius = 0.7
@@ -34,12 +35,13 @@ size = Vector3(3, 0.1, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wc6t"]
 size = Vector3(3, 1, 5)
 
-[node name="Soapbox" type="VehicleBody3D" unique_id=1763406181]
+[node name="Soapbox" type="VehicleBody3D" unique_id=1763406181 groups=["Soapbox"]]
 continuous_cd = true
 engine_force = 55.3
 brake = 600.0
 steering = 0.35866517
 script = ExtResource("1_script")
+missile = ExtResource("2_233yk")
 
 [node name="RightFrontWheel" type="VehicleWheel3D" parent="." unique_id=1379552486]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.8, 2)
@@ -146,3 +148,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1363577492]
 shape = SubResource("BoxShape3D_2wc6t")
 debug_color = Color(0, 0.6, 0.69803923, 0.7294118)
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1938524501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
