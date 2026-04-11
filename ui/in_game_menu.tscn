@@ -28,10 +28,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -460.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = 390.0
+offset_left = -260.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 220.0
 
 [node name="DropPanel" type="PanelContainer" parent="Root/TopRight"]
 visible = false
@@ -42,35 +42,28 @@ anchor_bottom = 1.0
 
 [node name="Margin" type="MarginContainer" parent="Root/TopRight/DropPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="VBox" type="VBoxContainer" parent="Root/TopRight/DropPanel/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="Root/TopRight/DropPanel/Margin/VBox"]
 layout_mode = 2
 text = "MENU"
 horizontal_alignment = 2
-theme_override_font_sizes/font_size = 28
 
 [node name="ResetButton" type="Button" parent="Root/TopRight/DropPanel/Margin/VBox"]
 layout_mode = 2
 text = "Reset"
-custom_minimum_size = Vector2(0, 62)
-theme_override_font_sizes/font_size = 20
 
 [node name="QuitToMenuButton" type="Button" parent="Root/TopRight/DropPanel/Margin/VBox"]
 layout_mode = 2
 text = "Quit to Main Menu"
-custom_minimum_size = Vector2(0, 62)
-theme_override_font_sizes/font_size = 20
 
 [node name="QuitGameButton" type="Button" parent="Root/TopRight/DropPanel/Margin/VBox"]
 layout_mode = 2
 text = "Quit Game"
-custom_minimum_size = Vector2(0, 62)
-theme_override_font_sizes/font_size = 20
