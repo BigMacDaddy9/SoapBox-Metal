@@ -1,0 +1,95 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://damage_hud.gd" id="1"]
+
+[node name="DamageHUD" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="WheelPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 360.0
+offset_bottom = 180.0
+
+[node name="RF" type="Control" parent="WheelPanel"]
+offset_right = 340.0
+offset_bottom = 36.0
+
+[node name="Label" type="Label" parent="WheelPanel/RF"]
+offset_right = 70.0
+offset_bottom = 24.0
+text = "RF: 0%"
+
+[node name="Bar" type="TextureProgressBar" parent="WheelPanel/RF"]
+offset_left = 80.0
+offset_right = 340.0
+offset_bottom = 24.0
+
+[node name="LF" type="Control" parent="WheelPanel"]
+offset_top = 36.0
+offset_right = 340.0
+offset_bottom = 72.0
+
+[node name="Label" type="Label" parent="WheelPanel/LF"]
+offset_right = 70.0
+offset_bottom = 24.0
+text = "LF: 0%"
+
+[node name="Bar" type="TextureProgressBar" parent="WheelPanel/LF"]
+offset_left = 80.0
+offset_right = 340.0
+offset_bottom = 24.0
+
+[node name="RB" type="Control" parent="WheelPanel"]
+offset_top = 72.0
+offset_right = 340.0
+offset_bottom = 108.0
+
+[node name="Label" type="Label" parent="WheelPanel/RB"]
+offset_right = 70.0
+offset_bottom = 24.0
+text = "RB: 0%"
+
+[node name="Bar" type="TextureProgressBar" parent="WheelPanel/RB"]
+offset_left = 80.0
+offset_right = 340.0
+offset_bottom = 24.0
+
+[node name="LB" type="Control" parent="WheelPanel"]
+offset_top = 108.0
+offset_right = 340.0
+offset_bottom = 144.0
+
+[node name="Label" type="Label" parent="WheelPanel/LB"]
+offset_right = 70.0
+offset_bottom = 24.0
+text = "LB: 0%"
+
+[node name="Bar" type="TextureProgressBar" parent="WheelPanel/LB"]
+offset_left = 80.0
+offset_right = 340.0
+offset_bottom = 24.0
+
+[node name="LapPanel" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 220.0
+offset_right = 360.0
+offset_bottom = 320.0
+
+[node name="TrackLabel" type="Label" parent="LapPanel"]
+offset_right = 320.0
+offset_bottom = 34.0
+text = "Track Name"
+theme_override_font_sizes/font_size = 28
+
+[node name="LapLabel" type="Label" parent="LapPanel"]
+offset_top = 38.0
+offset_right = 220.0
+offset_bottom = 74.0
+text = "Lap 1"
+theme_override_font_sizes/font_size = 24

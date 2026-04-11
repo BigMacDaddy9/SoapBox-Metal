@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://t7lutjqx5hrk"]
 
-[ext_resource type="Script" uid="uid://di6jogp16cf2w" path="res://scripts/missile.gd" id="1_cdnlh"]
-[ext_resource type="PackedScene" uid="uid://cmx3x63n1j1bj" path="res://explosion.tscn" id="2_0uoyr"]
+[ext_resource type="Script" path="res://scripts/missile.gd" id="1_cdnlh"]
+[ext_resource type="PackedScene" path="res://explosion.tscn" id="2_0uoyr"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_8j23c"]
 top_radius = 0.0

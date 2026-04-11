@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://build_preview.gd" id="1"]
+
+[sub_resource type="StandardMaterial3D" id="1"]
+albedo_color = Color(0.14, 0.14, 0.14, 1)
+
+[sub_resource type="CylinderMesh" id="2"]
+top_radius = 2.6
+bottom_radius = 2.9
+height = 0.18
+material = SubResource("1")
+
+[node name="BuildPreview" type="Node3D"]
+script = ExtResource("1")
+
+[node name="StandPivot" type="Node3D" parent="."]
+
+[node name="PreviewStand" type="MeshInstance3D" parent="StandPivot"]
+mesh = SubResource("2")
+visible = false
+
+[node name="VehicleAnchor" type="Node3D" parent="StandPivot"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 8, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.981627, -0.190809, 0, 0.190809, 0.981627, 0, 3.45, 14.2)
+current = true

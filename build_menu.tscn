@@ -1,0 +1,307 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://build_menu.gd" id="1"]
+[ext_resource type="PackedScene" path="res://build_preview.tscn" id="2"]
+
+[node name="BuildMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="ScreenMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="MainHBox" type="HBoxContainer" parent="ScreenMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 22
+
+[node name="ConfigPanel" type="PanelContainer" parent="ScreenMargin/MainHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(880, 760)
+
+[node name="ConfigMargin" type="MarginContainer" parent="ScreenMargin/MainHBox/ConfigPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="ConfigVBox" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="HeaderPanel" type="PanelContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+layout_mode = 2
+
+[node name="HeaderMargin" type="MarginContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/HeaderPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="HeaderVBox" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/HeaderPanel/HeaderMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/HeaderPanel/HeaderMargin/HeaderVBox"]
+layout_mode = 2
+text = "Build Your Soapbox"
+horizontal_alignment = 1
+
+[node name="CurrentPlatformLabel" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/HeaderPanel/HeaderMargin/HeaderVBox"]
+layout_mode = 2
+text = "Current Platform: 4 Wheeler"
+horizontal_alignment = 1
+
+[node name="CurrentBaseLabel" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/HeaderPanel/HeaderMargin/HeaderVBox"]
+layout_mode = 2
+text = "Current Base: Light Base"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/HeaderPanel/HeaderMargin/HeaderVBox"]
+layout_mode = 2
+autowrap_mode = 3
+horizontal_alignment = 1
+text = ""
+
+[node name="Tabs" type="TabContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="PlatformTab" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlatformMargin" type="MarginContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/PlatformTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PlatformVBox" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/PlatformTab/PlatformMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="PlatformIntro" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/PlatformTab/PlatformMargin/PlatformVBox"]
+layout_mode = 2
+autowrap_mode = 3
+text = "Choose the platform that will act as the stable VehicleBody3D core for your build."
+
+[node name="PlatformList" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/PlatformTab/PlatformMargin/PlatformVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="BaseTab" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BaseMargin" type="MarginContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BaseTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BaseVBox" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BaseTab/BaseMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="BaseIntro" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BaseTab/BaseMargin/BaseVBox"]
+layout_mode = 2
+autowrap_mode = 3
+text = "Pick the base plate. For now the build system only uses Light and Heavy."
+
+[node name="BaseList" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BaseTab/BaseMargin/BaseVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="BuildTab" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BuildMargin" type="MarginContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BuildVBox" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="BuildTabDescription" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox"]
+layout_mode = 2
+autowrap_mode = 3
+text = ""
+
+[node name="SelectedPartLabel" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox"]
+layout_mode = 2
+text = "Selected Part: None"
+
+[node name="BuildHBox" type="HBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="PartsPanel" type="PanelContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(280, 0)
+
+[node name="PartsMargin" type="MarginContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/PartsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="PartsVBox" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/PartsPanel/PartsMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="PartsTitle" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/PartsPanel/PartsMargin/PartsVBox"]
+layout_mode = 2
+text = "Parts Palette"
+horizontal_alignment = 1
+
+[node name="PartScroll" type="ScrollContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/PartsPanel/PartsMargin/PartsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PartPalette" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/PartsPanel/PartsMargin/PartsVBox/PartScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="MountPanel" type="PanelContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(320, 0)
+
+[node name="MountMargin" type="MarginContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/MountPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="MountVBox" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/MountPanel/MountMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="MountTitle" type="Label" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/MountPanel/MountMargin/MountVBox"]
+layout_mode = 2
+text = "Mount Points"
+horizontal_alignment = 1
+
+[node name="MountScroll" type="ScrollContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/MountPanel/MountMargin/MountVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MountPalette" type="VBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/Tabs/BuildTab/BuildMargin/BuildVBox/BuildHBox/MountPanel/MountMargin/MountVBox/MountScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="FooterRow" type="HBoxContainer" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="SaveButton" type="Button" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/FooterRow"]
+layout_mode = 2
+text = "Save"
+custom_minimum_size = Vector2(220, 56)
+
+[node name="BackButton" type="Button" parent="ScreenMargin/MainHBox/ConfigPanel/ConfigMargin/ConfigVBox/FooterRow"]
+layout_mode = 2
+text = "Back to Main Menu"
+custom_minimum_size = Vector2(280, 56)
+
+[node name="PreviewPanel" type="PanelContainer" parent="ScreenMargin/MainHBox"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(920, 760)
+
+[node name="PreviewMargin" type="MarginContainer" parent="ScreenMargin/MainHBox/PreviewPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="PreviewVBox" type="VBoxContainer" parent="ScreenMargin/MainHBox/PreviewPanel/PreviewMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="PreviewTitle" type="Label" parent="ScreenMargin/MainHBox/PreviewPanel/PreviewMargin/PreviewVBox"]
+layout_mode = 2
+text = "Live Preview"
+horizontal_alignment = 1
+
+[node name="PreviewViewportContainer" type="SubViewportContainer" parent="ScreenMargin/MainHBox/PreviewPanel/PreviewMargin/PreviewVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="ScreenMargin/MainHBox/PreviewPanel/PreviewMargin/PreviewVBox/PreviewViewportContainer"]
+size = Vector2i(1600, 1200)
+transparent_bg = false
+render_target_update_mode = 4
+
+[node name="BuildPreview" parent="ScreenMargin/MainHBox/PreviewPanel/PreviewMargin/PreviewVBox/PreviewViewportContainer/SubViewport" instance=ExtResource("2")]
