@@ -34,6 +34,7 @@ func explode():
 	var tmp_explosion = coolexplosion.instantiate()
 	tmp_explosion.explode()
 	
+	self.remove_from_group("missiles")
 	queue_free()
 	
 	
