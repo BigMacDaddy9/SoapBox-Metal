@@ -120,14 +120,18 @@ PHASE 1: CORE FEEL
 1.	Keep working on the joints system
 2.	Force scaling (engine vs mass) 
 3.	Fix AI firing bug
+
+
 PHASE 2: BUILD DEPTH
 4.	Part-to-part joints 
 5.	Health/Survivability Stats
 6.	AI in Track Races
 7.	Better AI
+
 PHASE 3: GAMEPLAY LOOP
 8.	Scoring system 
 9.	Objectives (arena mode) 
+
 PHASE 4: POLISH / CHAOS
 10.	Wheel damage affecting steering 
 11.	Replay system 
