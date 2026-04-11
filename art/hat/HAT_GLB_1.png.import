@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jwkmivobqwin"
+uid="uid://bwv5ghdtp18y0"
 path.s3tc="res://.godot/imported/HAT_GLB_1.png-1417645f511bd6e08c3d9567bb83ecf6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "0ce3164669887da09b22cd9862d8652a"
 }
 
 [deps]
@@ -30,7 +27,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=8
-roughness/src_normal="res://HAT_GLB_2.png"
+roughness/src_normal="res://art/hat/HAT_GLB_2.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
