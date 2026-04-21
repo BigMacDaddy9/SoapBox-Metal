@@ -41,6 +41,12 @@ var _unstuck_turn_dir: float = 1.0
 var enemy_missile_cooldown_timer : float = 8.0
 var enemy_missile_cooldown : float = 8.0
 
+var evade_missile_cooldown_timer : float = 0.0
+var evade_missile_cooldown : float = 2.0
+
+var to_the_left : bool = false
+var to_the_right : bool = true
+
 func _ready() -> void:
 	super._ready()
 	_target = _resolve_target()
@@ -59,11 +65,12 @@ func _resolve_target() -> RigidBody3D:
 
 func _physics_process(delta: float) -> void:
 	_delta_cache = delta
-	if _target == null:
+	if _target == null and evade_missile_cooldown_timer == 0.0:
 		_target = _resolve_target()
 
 	_unstuck_timer = maxf(0.0, _unstuck_timer - delta)
 	enemy_missile_cooldown_timer = maxf(0.0, enemy_missile_cooldown_timer - delta)
+	evade_missile_cooldown_timer = maxf(0.0, evade_missile_cooldown_timer - delta)
 
 	# Only consider "stuck" when we are trying to move forward.
 	var spd := linear_velocity.length()
@@ -78,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		_unstuck_turn_dir = (1.0 if randf() > 0.5 else -1.0)
 		
 	# Missiles
-	if enemy_missile_cooldown_timer <= 0.0:
+	if enemy_missile_cooldown_timer <= 0.0 and _target != null:
 		is_in_front_vector_check(_target)
 
 	super._physics_process(delta)
@@ -96,6 +103,36 @@ func is_in_front_vector_check(target_object: Node3D):
 		add_sibling(tmp_missile)
 
 func _get_drive_input() -> Vector2:
+	if evade_missile_cooldown_timer > 0.0:
+		return Vector2(1.0, throttle)
+	if not get_tree().get_nodes_in_group("missiles").is_empty():
+		if _boost_cooldown_timer <= 0.0:
+			# temporarily beef up boost for AI, then trigger
+			var old_force := boost_force
+			var old_dur := boost_duration
+
+			boost_force = old_force * ai_boost_force_mult
+			boost_duration = old_dur * ai_boost_duration_mult
+			request_boost()
+
+			# restore so values don't drift
+			boost_force = old_force
+			boost_duration = old_dur
+		
+		if evade_missile_cooldown_timer == 0.0:
+			evade_missile_cooldown_timer = evade_missile_cooldown
+		
+		_target = null
+		
+		if to_the_right:
+			to_the_right = false
+			to_the_left = true
+			return Vector2(-1.0, 1.0)
+		else:
+			to_the_right = true
+			to_the_left = false
+			return Vector2(1.0, 1.0)
+		
 	if _target == null:
 		return Vector2.ZERO
 
