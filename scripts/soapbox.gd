@@ -45,7 +45,7 @@ extends VehicleBody3D
 @export var boost_multiplier: float = 1.5
 @export var boost_duration: float = 0.4
 @export var boost_cooldown: float = 1.5
-@export var missile_cooldown: float = 4.0
+@export var missile_cooldown: float = 6.0
 @export var allow_player_input: bool = true
 
 signal damage_changed(damage_ratio: float)
@@ -120,6 +120,7 @@ func _physics_process(delta: float) -> void:
 		var tmp_missile = missile.instantiate()
 		tmp_missile.position = $Marker3D.global_position
 		tmp_missile.rotation = $Marker3D.global_rotation
+		tmp_missile.add_to_group("missiles")
 		add_sibling(tmp_missile)
 	
 			#Rotating the vehicle along with the top box
