@@ -1,47 +1,40 @@
 [gd_scene format=3 uid="uid://cu7j5wps4nphs"]
 
-[ext_resource type="Script" uid="uid://by8owkapuiphr" path="res://scripts/soapbox.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://t7lutjqx5hrk" path="res://missile.tscn" id="2_233yk"]
+[ext_resource type="Script" uid="uid://by8owkapuiphr" path="res://soapbox.gd" id="1_script"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_233yk"]
 top_radius = 0.7
 bottom_radius = 0.7
 height = 0.1
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_front_bumper"]
-size = Vector3(2.6, 0.5, 0.8)
-
-[sub_resource type="BoxMesh" id="BoxMesh_front_bumper"]
-size = Vector3(2.6, 0.5, 0.8)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_back_bumper"]
-size = Vector3(2.6, 0.5, 0.8)
-
-[sub_resource type="BoxMesh" id="BoxMesh_back_bumper"]
-size = Vector3(2.6, 0.5, 0.8)
-
-[sub_resource type="BoxMesh" id="BoxMesh_bku22"]
-size = Vector3(0.1, 1, 5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_w0rbc"]
-size = Vector3(3, 1, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_233yk"]
-size = Vector3(2.105, 0.69, 0.68)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2wc6t"]
-size = Vector3(3, 0.1, 5)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wc6t"]
 size = Vector3(3, 1, 5)
 
-[node name="Soapbox" type="VehicleBody3D" unique_id=1763406181 groups=["Soapbox"]]
+[sub_resource type="StandardMaterial3D" id="Mat_thin_base"]
+albedo_color = Color(0.65, 0.42, 0.22, 1)
+
+[sub_resource type="BoxMesh" id="ThinBaseMesh"]
+material = SubResource("Mat_thin_base")
+size = Vector3(2.6, 0.08, 4.6)
+
+[sub_resource type="StandardMaterial3D" id="Mat_heavy_base"]
+albedo_color = Color(0.3, 0.22, 0.16, 1)
+
+[sub_resource type="BoxMesh" id="HeavyBaseMesh"]
+material = SubResource("Mat_heavy_base")
+size = Vector3(3, 0.22, 5)
+
+[node name="Soapbox" type="VehicleBody3D" unique_id=1763406181]
 continuous_cd = true
 engine_force = 55.3
 brake = 600.0
 steering = 0.35866517
 script = ExtResource("1_script")
-missile = ExtResource("2_233yk")
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=1829026520]
+
+[node name="Camera" type="Camera3D" parent="CameraPivot" unique_id=1226975966]
+transform = Transform3D(-1, 7.5710346e-08, -4.3711385e-08, 3.2161193e-08, 0.78353083, 0.621353, 8.1292065e-08, 0.621353, -0.78353083, 0, 5.8396506, -6.8115177)
 
 [node name="RightFrontWheel" type="VehicleWheel3D" parent="." unique_id=1379552486]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.8, 2)
@@ -97,57 +90,46 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0
 mesh = SubResource("CylinderMesh_233yk")
 skeleton = NodePath("")
 
-[node name="FrontBumper" type="Node3D" parent="." unique_id=703602466]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, -2.8)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FrontBumper" unique_id=529197876]
-shape = SubResource("BoxShape3D_front_bumper")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="FrontBumper" unique_id=1322941932]
-mesh = SubResource("BoxMesh_front_bumper")
-
-[node name="BackBumper" type="Node3D" parent="." unique_id=917942624]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 2.8)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BackBumper" unique_id=498478528]
-shape = SubResource("BoxShape3D_back_bumper")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BackBumper" unique_id=641044769]
-mesh = SubResource("BoxMesh_back_bumper")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=839870877]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
-mesh = SubResource("BoxMesh_bku22")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=69828833]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
-mesh = SubResource("BoxMesh_bku22")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=748375626]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
-mesh = SubResource("BoxMesh_w0rbc")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=1811774315]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.973896)
-mesh = SubResource("BoxMesh_233yk")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1114395800]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_2wc6t")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1068236450]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
-mesh = SubResource("BoxMesh_w0rbc")
-skeleton = NodePath("")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1363577492]
+visible = false
 shape = SubResource("BoxShape3D_2wc6t")
 debug_color = Color(0, 0.6, 0.69803923, 0.7294118)
 
-[node name="Marker3D" type="Marker3D" parent="." unique_id=1938524501]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+[node name="ThinBaseVisual" type="MeshInstance3D" parent="." unique_id=1887030852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
+visible = false
+mesh = SubResource("ThinBaseMesh")
+
+[node name="HeavyBaseVisual" type="MeshInstance3D" parent="." unique_id=483954718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38, 0)
+visible = false
+mesh = SubResource("HeavyBaseMesh")
+
+[node name="AttachmentPoints" type="Node3D" parent="." unique_id=740058570]
+
+[node name="FrontLeftMount" type="Marker3D" parent="AttachmentPoints" unique_id=1456683240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.3, 1.8)
+
+[node name="FrontRightMount" type="Marker3D" parent="AttachmentPoints" unique_id=1187367662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.3, 1.8)
+
+[node name="RearLeftMount" type="Marker3D" parent="AttachmentPoints" unique_id=1454098921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.3, -1.8)
+
+[node name="RearRightMount" type="Marker3D" parent="AttachmentPoints" unique_id=855483173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.3, -1.8)
+
+[node name="CenterMount" type="Marker3D" parent="AttachmentPoints" unique_id=1873190707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="SeatMount" type="Marker3D" parent="AttachmentPoints" unique_id=1146110031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.4)
+
+[node name="NoseMount" type="Marker3D" parent="AttachmentPoints" unique_id=1874089745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.2)
+
+[node name="LeftRailMount" type="Marker3D" parent="AttachmentPoints" unique_id=1511969612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.3, 0)
+
+[node name="RightRailMount" type="Marker3D" parent="AttachmentPoints" unique_id=538585689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.3, 0)

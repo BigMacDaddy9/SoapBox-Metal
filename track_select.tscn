@@ -1,0 +1,69 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://track_select.gd" id="1"]
+
+[node name="TrackSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="ScreenMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 100.0
+offset_right = -140.0
+offset_bottom = -100.0
+
+[node name="Panel" type="PanelContainer" parent="ScreenMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="ScreenMargin/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBox" type="VBoxContainer" parent="ScreenMargin/Panel/Margin"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="ScreenMargin/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Select Track"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 34
+
+[node name="Track1" type="Button" parent="ScreenMargin/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Test Hill 01"
+custom_minimum_size = Vector2(0, 72)
+theme_override_font_sizes/font_size = 22
+
+[node name="Track2" type="Button" parent="ScreenMargin/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Test Hill 02"
+custom_minimum_size = Vector2(0, 72)
+theme_override_font_sizes/font_size = 22
+
+[node name="Track3" type="Button" parent="ScreenMargin/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Nurburger Ring"
+custom_minimum_size = Vector2(0, 72)
+theme_override_font_sizes/font_size = 22
+
+[node name="Back" type="Button" parent="ScreenMargin/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Back to Main Menu"
+custom_minimum_size = Vector2(0, 72)
+theme_override_font_sizes/font_size = 22

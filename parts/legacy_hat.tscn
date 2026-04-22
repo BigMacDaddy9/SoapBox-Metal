@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://art/hat/HAT_GLB.glb" id="1_hat"]
+
+[sub_resource type="BoxShape3D" id="1_hat_shape"]
+size = Vector3(1.8, 1.2, 1.8)
+
+[node name="LegacyHat" type="RigidBody3D"]
+mass = 10.234
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 4
+
+[node name="FunnyHatCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("1_hat_shape")
+
+[node name="HAT_GLB" parent="." instance=ExtResource("1_hat")]
+transform = Transform3D(0.7, 0, 0, 0, 0.8, 0, 0, 0, 0.6, 0, -0.45, 0)

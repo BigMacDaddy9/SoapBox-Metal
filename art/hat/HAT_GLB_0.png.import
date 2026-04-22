@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7xshira0wf0o"
+uid="uid://c2kexg8wec8jl"
 path.s3tc="res://.godot/imported/HAT_GLB_0.png-2b86af3421fae31b88a6e90cc1a99dec.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "6da57b3963bdef7e26b651d8ae8ea951"
 }
 
 [deps]

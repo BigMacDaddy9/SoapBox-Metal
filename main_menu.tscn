@@ -1,48 +1,122 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bgl3c6b67nbcl"]
 
-[ext_resource type="Script" uid="uid://cymssyiosidv3" path="res://scripts/main_menu.gd" id="1"]
+[ext_resource type="Script" uid="uid://cymssyiosidv3" path="res://main_menu.gd" id="1"]
+[ext_resource type="PackedScene" path="res://build_preview.tscn" id="2_preview"]
 
-
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1995337850]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="ScreenMargin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="Panel" type="PanelContainer" parent="ScreenMargin"]
 layout_mode = 2
-theme_override_constants/separation = 16
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="MainMargin" type="MarginContainer" parent="ScreenMargin/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="HBox" type="HBoxContainer" parent="ScreenMargin/Panel/MainMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 36
+
+[node name="LeftPanel" type="PanelContainer" parent="ScreenMargin/Panel/MainMargin/HBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(520, 0)
+size_flags_vertical = 3
+
+[node name="LeftMargin" type="MarginContainer" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin" unique_id=1073378172]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer" unique_id=1278429877]
 layout_mode = 2
 text = "SOAPBOX METAL"
 horizontal_alignment = 1
 
-[node name="ArenaButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="BuildButton" type="Button" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer"]
+layout_mode = 2
+text = "Build Soapbox"
+custom_minimum_size = Vector2(0, 68)
+
+[node name="PlatformStatusLabel" type="Label" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer"]
+layout_mode = 2
+text = "Current Platform: 4 Wheeler"
+horizontal_alignment = 1
+
+[node name="BaseStatusLabel" type="Label" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer"]
+layout_mode = 2
+text = "Current Base: Light Base"
+horizontal_alignment = 1
+
+[node name="ArenaButton" type="Button" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer" unique_id=1419498440]
 layout_mode = 2
 text = "Soapbox Arena"
+custom_minimum_size = Vector2(0, 68)
 
-[node name="AICheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer"]
+[node name="AICheckBox" type="CheckBox" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer" unique_id=904120261]
 layout_mode = 2
-text = "Enable AI Opponent"
 button_pressed = true
+text = "Enable AI Opponent"
+custom_minimum_size = Vector2(0, 54)
 
-[node name="DownhillButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="DownhillButton" type="Button" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer" unique_id=1949588259]
 layout_mode = 2
 text = "Soapbox Downhill Race"
+custom_minimum_size = Vector2(0, 68)
 
-[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer" unique_id=2130197092]
 layout_mode = 2
 text = "Exit"
+custom_minimum_size = Vector2(0, 68)
 
-[node name="StatusLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="StatusLabel" type="Label" parent="ScreenMargin/Panel/MainMargin/HBox/LeftPanel/LeftMargin/VBoxContainer" unique_id=2062467295]
 layout_mode = 2
-text = ""
 horizontal_alignment = 1
+
+[node name="RightPanel" type="PanelContainer" parent="ScreenMargin/Panel/MainMargin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(980, 0)
+
+[node name="PreviewViewportContainer" type="SubViewportContainer" parent="ScreenMargin/Panel/MainMargin/HBox/RightPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="ScreenMargin/Panel/MainMargin/HBox/RightPanel/PreviewViewportContainer"]
+size = Vector2i(1600, 1600)
+transparent_bg = false
+render_target_update_mode = 4
+
+[node name="BuildPreview" parent="ScreenMargin/Panel/MainMargin/HBox/RightPanel/PreviewViewportContainer/SubViewport" instance=ExtResource("2_preview")]
