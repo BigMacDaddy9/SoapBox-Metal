@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cwbanguxglsaj"]
 
 [ext_resource type="PackedScene" uid="uid://cu7j5wps4nphs" path="res://soapbox.tscn" id="1_soapbox"]
-[ext_resource type="Script" uid="uid://dxowb7q08ylyx" path="res://scripts/enemy_ai.gd" id="2_enemy_ai"]
-[ext_resource type="PackedScene" uid="uid://1bfjivh31qi5" path="res://art/hat/HAT_GLB.glb" id="6_dwbse"]
-[ext_resource type="Script" uid="uid://c6tgxu7vqhjh0" path="res://scripts/obstacle_spawner.gd" id="99_obstacle_spawner"]
-[ext_resource type="Script" uid="uid://dqrtdlvgrbuo4" path="res://scripts/damage_hud.gd" id="100_damage_hud"]
+[ext_resource type="Script" uid="uid://dxowb7q08ylyx" path="res://enemy_ai.gd" id="2_enemy_ai"]
+[ext_resource type="PackedScene" uid="uid://c7ab68buolqvg" path="res://art/hat/HAT_GLB.glb" id="6_dwbse"]
+[ext_resource type="Script" uid="uid://c6tgxu7vqhjh0" path="res://obstacle_spawner.gd" id="99_obstacle_spawner"]
+[ext_resource type="Script" uid="uid://dqrtdlvgrbuo4" path="res://damage_hud.gd" id="100_damage_hud"]
 [ext_resource type="Script" uid="uid://dc4mf7hpv7qqv" path="res://scripts/world.gd" id="102_world"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]

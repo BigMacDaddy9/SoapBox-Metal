@@ -66,9 +66,11 @@ extends VehicleBody3D
 @export var boost_duration: float = 0.65
 @export var boost_cooldown: float = 1.5
 @export var missile_cooldown: float = 4.0
+@export var oil_cooldown : float = 4.0
 @export var allow_player_input: bool = true
 @export var missile: PackedScene = preload("res://missile.tscn")
-
+@export var oilspill: PackedScene = preload("res://oil_spill.tscn")
+@onready var oil_marker = $Marker3D
 # =========================================================
 # CAMERA TUNING
 # =========================================================
@@ -86,6 +88,7 @@ var _last_damage_ratio: float = -1.0
 var _boost_timer: float = 0.0
 var _boost_cooldown_timer: float = 0.0
 var _missile_cooldown_timer: float = 0.0
+var _oil_cooldown_timer : float = 0.0
 var _wheels := [] as Array[VehicleWheel3D]
 var _detached := {} as Dictionary
 var _damage := {} as Dictionary
@@ -140,7 +143,8 @@ func _physics_process(delta: float) -> void:
 	_boost_timer = maxf(0.0, _boost_timer - delta)
 	_boost_cooldown_timer = maxf(0.0, _boost_cooldown_timer - delta)
 	_missile_cooldown_timer = maxf(0.0, _missile_cooldown_timer - delta)
-
+	_oil_cooldown_timer = maxf(0.0, _oil_cooldown_timer - delta)
+	oil_marker = get_node_or_null("Marker3D")
 	var input_dir: Vector2 = _get_drive_input()
 
 	if allow_player_input and Input.is_action_just_pressed("boost") and _boost_cooldown_timer <= 0.0:
@@ -185,6 +189,24 @@ func _physics_process(delta: float) -> void:
 	if absf(r - _last_damage_ratio) > 0.01:
 		_last_damage_ratio = r
 		emit_signal("damage_changed", r)
+
+	# =====================================================
+	# BMD OILED UP
+	# =====================================================
+	if allow_player_input and Input.is_action_just_pressed("oil") and _oil_cooldown_timer <= 0.0 and oilspill != null:
+		_oil_cooldown_timer = oil_cooldown
+		var oil_spawn := get_node_or_null("OilSpawn") as Node3D
+		var tmp_oil := oilspill.instantiate() as Node3D
+
+		if tmp_oil != null:
+			if oil_spawn != null:
+				tmp_oil.global_transform = oil_spawn.global_transform
+			else:
+				if linear_velocity.x != 0:
+					tmp_oil.global_position = Vector3(global_position.x + 5, global_position.y, global_position.z)
+				else:
+					tmp_oil.global_position = Vector3(global_position.x, global_position.y, global_position.z + 5)
+		get_tree().current_scene.add_child(tmp_oil)
 
 
 # =========================================================
