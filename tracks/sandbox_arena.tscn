@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cwbanguxglsaj"]
 
 [ext_resource type="Script" uid="uid://c6tgxu7vqhjh0" path="res://obstacle_spawner.gd" id="99_obstacle_spawner"]
-[ext_resource type="Script" uid="uid://dc4mf7hpv7qqv" path="res://tracks/sandbox_arena.gd" id="102_world"]
 [ext_resource type="PackedScene" path="res://damage_hud.tscn" id="101_damage_hud_scene"]
+[ext_resource type="Script" uid="uid://dc4mf7hpv7qqv" path="res://scripts/world.gd" id="102_world"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(120, 2, 120)
@@ -37,10 +37,10 @@ shape = SubResource("BoxShape3D_ground")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("BoxMesh_ground")
 
-[node name="PlayerSpawn" type="Marker3D" parent="."]
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=177363092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.823525, 0)
 
-[node name="EnemySpawn" type="Marker3D" parent="."]
+[node name="EnemySpawn" type="Marker3D" parent="." unique_id=848952983]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.823525, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=96666862]
@@ -88,83 +88,12 @@ mesh = SubResource("BoxMesh_wall")
 [node name="Obstacles" type="Node3D" parent="." unique_id=81669857]
 script = ExtResource("99_obstacle_spawner")
 
-[node name="HUD" parent="." instance=ExtResource("101_damage_hud_scene")]
+[node name="HUD" parent="." unique_id=339109159 instance=ExtResource("101_damage_hud_scene")]
 
-[node name="WheelPanel" type="Control" parent="HUD" unique_id=713835703]
+[node name="WheelPanel2" type="Control" parent="HUD" unique_id=713835703]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 360.0
 offset_bottom = 180.0
-
-[node name="RF" type="Control" parent="HUD/WheelPanel" unique_id=1081258778]
-anchors_preset = 0
-offset_right = 340.0
-offset_bottom = 36.0
-
-[node name="Label" type="Label" parent="HUD/WheelPanel/RF" unique_id=1444464123]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 24.0
-text = "RF: 0%"
-
-[node name="Bar" type="TextureProgressBar" parent="HUD/WheelPanel/RF" unique_id=258477529]
-layout_mode = 0
-offset_left = 80.0
-offset_right = 340.0
-offset_bottom = 24.0
-
-[node name="LF" type="Control" parent="HUD/WheelPanel" unique_id=291957825]
-anchors_preset = 0
-offset_top = 36.0
-offset_right = 340.0
-offset_bottom = 72.0
-
-[node name="Label" type="Label" parent="HUD/WheelPanel/LF" unique_id=1391963431]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 24.0
-text = "LF: 0%"
-
-[node name="Bar" type="TextureProgressBar" parent="HUD/WheelPanel/LF" unique_id=519395610]
-layout_mode = 0
-offset_left = 80.0
-offset_right = 340.0
-offset_bottom = 24.0
-
-[node name="RB" type="Control" parent="HUD/WheelPanel" unique_id=794970358]
-anchors_preset = 0
-offset_top = 72.0
-offset_right = 340.0
-offset_bottom = 108.0
-
-[node name="Label" type="Label" parent="HUD/WheelPanel/RB" unique_id=32855607]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 24.0
-text = "RB: 0%"
-
-[node name="Bar" type="TextureProgressBar" parent="HUD/WheelPanel/RB" unique_id=23212019]
-layout_mode = 0
-offset_left = 80.0
-offset_right = 340.0
-offset_bottom = 24.0
-
-[node name="LB" type="Control" parent="HUD/WheelPanel" unique_id=142932075]
-anchors_preset = 0
-offset_top = 108.0
-offset_right = 340.0
-offset_bottom = 144.0
-
-[node name="Label" type="Label" parent="HUD/WheelPanel/LB" unique_id=1040259561]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 24.0
-text = "LB: 0%"
-
-[node name="Bar" type="TextureProgressBar" parent="HUD/WheelPanel/LB" unique_id=1477100386]
-layout_mode = 0
-offset_left = 80.0
-offset_right = 340.0
-offset_bottom = 24.0

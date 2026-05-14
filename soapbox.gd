@@ -100,6 +100,8 @@ var _cam_yaw: float = 0.0
 var _cam_pitch: float = 0.0
 var _cam_default_yaw: float = 0.0
 var _cam_default_pitch: float = 0.0
+var oil_spill_hit: bool = false
+var _oil_spill_timer: float = 0.0
 
 
 # =========================================================
@@ -144,6 +146,7 @@ func _physics_process(delta: float) -> void:
 	_boost_cooldown_timer = maxf(0.0, _boost_cooldown_timer - delta)
 	_missile_cooldown_timer = maxf(0.0, _missile_cooldown_timer - delta)
 	_oil_cooldown_timer = maxf(0.0, _oil_cooldown_timer - delta)
+	_oil_spill_timer = maxf(0.0, _oil_spill_timer - delta)
 	oil_marker = get_node_or_null("Marker3D")
 	var input_dir: Vector2 = _get_drive_input()
 
@@ -166,30 +169,7 @@ func _physics_process(delta: float) -> void:
 				tmp_missile.global_transform = global_transform
 
 			get_tree().current_scene.add_child(tmp_missile)
-
-	var engine_mult := _engine_multiplier_from_damage()
-	var steer_mult := _steer_multiplier_from_front_damage()
-
-	var final_engine_force: float = input_dir.y * push_force * engine_mult
-
-	# Boost now adds a much more noticeable shove.
-	if _boost_timer > 0.0:
-		final_engine_force += boost_force * boost_multiplier * engine_mult
-
-	engine_force = final_engine_force
-	steering = input_dir.x * base_steer_angle * steer_mult
-
-	if _camera_pivot != null and not Input.is_action_pressed("camera_rotate"):
-		var t: float = 1.0 - exp(-camera_return_speed * delta)
-		_cam_yaw = lerpf(_cam_yaw, _cam_default_yaw, t)
-		_cam_pitch = lerpf(_cam_pitch, _cam_default_pitch, t)
-		_camera_pivot.rotation = Vector3(_cam_pitch, _cam_yaw, 0.0)
-
-	var r: float = get_damage_ratio()
-	if absf(r - _last_damage_ratio) > 0.01:
-		_last_damage_ratio = r
-		emit_signal("damage_changed", r)
-
+			
 	# =====================================================
 	# BMD OILED UP
 	# =====================================================
@@ -202,12 +182,44 @@ func _physics_process(delta: float) -> void:
 			if oil_spawn != null:
 				tmp_oil.global_transform = oil_spawn.global_transform
 			else:
-				if linear_velocity.x != 0:
-					tmp_oil.global_position = Vector3(global_position.x + 5, global_position.y, global_position.z)
+				var current_dir = -global_transform.basis.z
+				var alignment = current_dir.dot(Vector3.FORWARD)
+				if alignment > 0.7:
+					tmp_oil.global_position = global_position + global_transform.basis.z * 5.0
 				else:
-					tmp_oil.global_position = Vector3(global_position.x, global_position.y, global_position.z + 5)
+					if alignment < 0.4:
+						tmp_oil.global_position = global_position + global_transform.basis.z * 5.0
 		get_tree().current_scene.add_child(tmp_oil)
 
+	var engine_mult := _engine_multiplier_from_damage()
+	var steer_mult := _steer_multiplier_from_front_damage()
+
+	var final_engine_force: float = input_dir.y * push_force * engine_mult
+
+	# Boost now adds a much more noticeable shove.
+	if _boost_timer > 0.0:
+		final_engine_force += boost_force * boost_multiplier * engine_mult
+		
+	engine_force = final_engine_force
+	if oil_spill_hit or _oil_spill_timer > 0.0:
+		if oil_spill_hit:
+			_oil_spill_timer = 2.0
+			oil_spill_hit = false
+		rotate_y(deg_to_rad(7.5))
+		engine_force =  boost_force * boost_multiplier #make em really slip
+	else:
+		steering = input_dir.x * base_steer_angle * steer_mult
+
+	if _camera_pivot != null and not Input.is_action_pressed("camera_rotate"):
+		var t: float = 1.0 - exp(-camera_return_speed * delta)
+		_cam_yaw = lerpf(_cam_yaw, _cam_default_yaw, t)
+		_cam_pitch = lerpf(_cam_pitch, _cam_default_pitch, t)
+		_camera_pivot.rotation = Vector3(_cam_pitch, _cam_yaw, 0.0)
+
+	var r: float = get_damage_ratio()
+	if absf(r - _last_damage_ratio) > 0.01:
+		_last_damage_ratio = r
+		emit_signal("damage_changed", r)
 
 # =========================================================
 # EXTERNAL BOOST REQUEST
@@ -546,3 +558,8 @@ func _apply_base_preset() -> void:
 	base_steer_angle = base_steer_angle_default * float(preset["steer_mult"])
 
 	VehicleBuilder.apply_base_visuals(self, selected)
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("oil"):
+		oil_spill_hit = true

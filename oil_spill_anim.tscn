@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://b57tc5ec6reja"]
+
+[ext_resource type="Script" uid="uid://da3j3l0r5kg5r" path="res://oil_spill_anim.gd" id="1_i7n0m"]
+[ext_resource type="Script" uid="uid://10hsx3e36q6f" path="res://scripts/smoke.gd" id="1_uv8n6"]
+
+[sub_resource type="Gradient" id="Gradient_i7n0m"]
+colors = PackedColorArray(0.9295302, 0.5957852, 0, 1, 0.9999998, 0.014609512, 0.14343423, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vxas0"]
+gradient = SubResource("Gradient_i7n0m")
+
+[sub_resource type="Curve" id="Curve_w6ebu"]
+_data = [Vector2(0.029411763, 0.022471905), 0.0, 0.0, 0, 0, Vector2(0.49264708, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.08988774), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_m5xho"]
+curve = SubResource("Curve_w6ebu")
+
+[sub_resource type="Curve" id="Curve_lrcpk"]
+_data = [Vector2(0, 0.10112369), 0.0, 0.0, 0, 0, Vector2(0.5294118, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.033707857), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_l04k4"]
+curve = SubResource("Curve_lrcpk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l8gdl"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_l04k4")
+color = Color(0.1630866, 0.07503431, 0, 1)
+color_ramp = SubResource("GradientTexture1D_vxas0")
+emission_curve = SubResource("CurveTexture_m5xho")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7epf"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_novdn"]
+material = SubResource("StandardMaterial3D_q7epf")
+radial_segments = 8
+rings = 4
+
+[node name="OilSpillAnim" type="Node3D" unique_id=1740830472]
+script = ExtResource("1_i7n0m")
+
+[node name="Spill" type="GPUParticles3D" parent="." unique_id=250013064]
+transform = Transform3D(-0.7953971, -0.1210632, 0.59387493, 0.31777263, -0.9176725, 0.2385335, 0.51610494, 0.37844604, 0.76838446, 0, 0, 0)
+amount = 12
+lifetime = 2.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_l8gdl")
+draw_pass_1 = SubResource("SphereMesh_novdn")
+script = ExtResource("1_uv8n6")
+
+[node name="Timer" type="Timer" parent="." unique_id=1432456094]
+wait_time = 2.0
+one_shot = true

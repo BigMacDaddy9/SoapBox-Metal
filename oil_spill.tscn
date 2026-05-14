@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://o6327n25d614"]
 
 [ext_resource type="Script" uid="uid://daemhl2f4t0f8" path="res://scripts/oil_spill.gd" id="1_10ahm"]
+[ext_resource type="PackedScene" uid="uid://b57tc5ec6reja" path="res://oil_spill_anim.tscn" id="2_c73b7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c3anl"]
-height = 1.0
 radius = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_10ahm"]
@@ -21,6 +21,7 @@ gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 3
 script = ExtResource("1_10ahm")
+oilspillanim = ExtResource("2_c73b7")
 
 [node name="OilSpillCollision" type="CollisionShape3D" parent="." unique_id=1790913966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

@@ -1,10 +1,21 @@
 extends RigidBody3D
 var _oil_spawn_timer : float = 0.0
 var rotation_speed = 360
+@export var oilspillanim: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	add_to_group("oil")
+	if oilspillanim != null:
+		var tmp_oilspillanim: Node3D = oilspillanim.instantiate() as Node3D
+		var scene_root: Node = get_tree().current_scene
+		if scene_root == null:
+			scene_root = get_parent()
+		if scene_root != null:
+			scene_root.add_child(tmp_oilspillanim)
+			tmp_oilspillanim.global_position = global_position
+			if tmp_oilspillanim.has_method("explode"):
+				tmp_oilspillanim.explode()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,25 +26,6 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func _on_oil_spill_body_entered(body: Node) -> void:
-	if body == null or body == self:
-		return
-	else:
-		if body is VehicleBody3D:
-			if body.linear_velocity.z != 0: 
-				body.rotate_z(deg_to_rad(rotation_speed))
-			else:
-				if body.linear_velocity.x != 0: 
-					body.rotate_x(deg_to_rad(rotation_speed))
-			queue_free()
-		
-func _on_oil_spill_body_shape_entered(body: Node) -> void:
-	if body == null or body == self:
-		return
-	else:
-		if body is VehicleBody3D:
-			if body.linear_velocity.z != 0: 
-				body.rotate_z(deg_to_rad(rotation_speed))
-			else:
-				if body.linear_velocity.x != 0: 
-					body.rotate_x(deg_to_rad(rotation_speed))
+	if "oil_spill_hit" in body:
+		body.oil_spill_hit = true
 		queue_free()
